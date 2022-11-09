@@ -1,0 +1,78 @@
+@use "sass:color";
+
+$color-mastodon-text: #9baec8;
+$color-mastodon-background: #191b22;
+$color-mastodon-colored-button: #595aff;
+$color-mastodon-outlined-button: #8c8dff;
+$color-mastodon-input-background: #282c37;
+
+.mastodon-share-modal {
+	background: $color-mastodon-background;
+	border-radius: 5px;
+	color: $color-mastodon-text;
+	display: block;
+	left: 50%;
+	margin-left: -220px;
+	padding: 20px;
+	position: fixed;
+	top: 50px;
+	width: 400px;
+	z-index: 100;
+}
+
+.mastodon-share-modal-logo {
+	display: flex;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+.mastodon-share-label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.mastodon-share-modal-text,
+.mastodon-share-modal-instance {
+	background: $color-mastodon-input-background;
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: $color-mastodon-text;
+	font-size: 14px;
+	line-height: 18px;
+	margin: 0;
+	margin-bottom: 20px;
+	outline: 0;
+	padding: 15px 30px 15px 15px;
+	width: 100%;
+}
+
+.mastodon-share-modal-text {
+	height: 100px;
+}
+
+.mastodon-share-modal-btns {
+	display: flex;
+}
+
+.mastodon-share-modal-dismiss,
+.mastodon-share-modal-confirm {
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px 20px;
+}
+
+.mastodon-share-modal-dismiss {
+	background: $color-mastodon-background;
+	border: 1px solid $color-mastodon-outlined-button;
+	color: $color-mastodon-outlined-button;
+	margin-left: auto;
+}
+
+.mastodon-share-modal-confirm {
+	background: $color-mastodon-colored-button;
+	border: 1px solid $color-mastodon-colored-button;
+	color: $color-mastodon-text;
+	margin-left: 20px;
+}

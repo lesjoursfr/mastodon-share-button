@@ -1,0 +1,27 @@
+{
+	"extends": [
+		"stylelint-config-sass-guidelines",
+		"stylelint-config-prettier"
+	],
+	"ignoreFiles": [
+		"dist/**",
+		"package.json",
+		"node_modules/**",
+		".pnp.*",
+		".yarn/*",
+		"**/*.html",
+		"**/*.php",
+		"**/*.js"
+	],
+	"rules": {
+		"selector-max-id": 8,
+		"selector-max-compound-selectors": 8,
+		"selector-no-qualifying-type": [
+			true,
+			{
+				"ignore": ["attribute", "class"]
+			}
+		],
+		"max-nesting-depth": 4
+	}
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" style="height: 4000px">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Mastodon sharing button</title>
+
+		<link rel="stylesheet" href="mastodon-share-button.css" />
+		<script type="text/javascript" src="/js-cookie/js.cookie.js"></script>
+		<script type="text/javascript" src="mastodon-share-button.js"></script>
+
+		<style>
+			#mastodon-sharing-test {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			#mastodon-sharing-test img {
+				width: 32px;
+				height: 32px;
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Mastodon sharing button</h1>
+
+		<button
+			id="mastodon-sharing-test"
+			mastodon-sharing-text="Mastodon sharing button! https://github.com/lesjoursfr/mastodon-share-button"
+		>
+			<img src="logo-black.svg" /> Share on Mastodon
+		</button>
+
+		<script type="text/javascript">
+			/* Initialize the Mastodon sharing button */
+			new MastodonShareButtons.default({
+				saveInstance: true,
+			});
+		</script>
+	</body>
+</html>

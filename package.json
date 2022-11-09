@@ -1,0 +1,78 @@
+{
+	"name": "@lesjoursfr/mastodon-share-button",
+	"version": "0.0.0",
+	"description": "Simple WYSIWYG editor.",
+	"license": "MIT",
+	"repository": "lesjoursfr/mastodon-share-button",
+	"homepage": "https://github.com/lesjoursfr/mastodon-share-button#readme",
+	"bugs": {
+		"url": "https://github.com/lesjoursfr/mastodon-share-button/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=16.18.1 || >=18.12.1"
+	},
+	"browserslist": [
+		"Chrome >= 60",
+		"Safari >= 12",
+		"iOS >= 12",
+		"Firefox >= 60",
+		"Edge >= 79"
+	],
+	"main": "src/index.js",
+	"type": "module",
+	"scripts": {
+		"freshlock": "rm -rf node_modules/ && rm .yarn/install-state.gz && rm -r .yarn/cache/ && rm yarn.lock && yarn",
+		"stylelint-check": "stylelint-config-prettier-check",
+		"eslint-check": "eslint-config-prettier src/index.js",
+		"check-js": "eslint . --ext .js",
+		"check-sass": "stylelint **/*.scss",
+		"check-style": "prettier --check .",
+		"lint-js": "eslint . --fix --ext .js",
+		"lint-sass": "stylelint **/*.scss --fix",
+		"format": "prettier --write .",
+		"test": "npx ava",
+		"server": "webpack serve --mode development --config server/button.webpack.js --hot --open"
+	},
+	"files": [
+		"src/**/*"
+	],
+	"keywords": [
+		"mastodon",
+		"share",
+		"button"
+	],
+	"devDependencies": {
+		"@babel/core": "^7.20.2",
+		"@babel/preset-env": "^7.20.2",
+		"ava": "^5.0.1",
+		"babel-loader": "^9.1.0",
+		"css-loader": "^6.7.1",
+		"eslint": "^8.27.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-n": "^15.5.1",
+		"eslint-plugin-promise": "^6.1.1",
+		"js-cookie": "^3.0.1",
+		"jsdom": "^20.0.2",
+		"mini-css-extract-plugin": "^2.6.1",
+		"postcss": "^8.4.18",
+		"prettier": "^2.7.1",
+		"sass": "^1.56.1",
+		"sass-loader": "^13.1.0",
+		"style-loader": "^3.3.1",
+		"stylelint": "^14.14.1",
+		"stylelint-config-prettier": "^9.0.4",
+		"stylelint-config-sass-guidelines": "^9.0.1",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0",
+		"webpack-dev-server": "^4.11.1"
+	},
+	"peerDependencies": {
+		"js-cookie": "^3.0.1"
+	},
+	"packageManager": "yarn@3.2.4"
+}

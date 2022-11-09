@@ -1,0 +1,57 @@
+name: QC Checks
+
+on:
+  push:
+    branches-ignore:
+      - renovate/*
+      - stable
+      - beta
+    tags-ignore:
+      - "**"
+
+jobs:
+  checks:
+    name: QC Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install
+        run: npm install
+
+      - name: ESLint checks
+        run: npm run check-js
+
+      - name: Stylelint checks
+        run: npm run check-sass
+
+      - name: Prettier checks
+        run: npm run check-style
+
+  tests:
+    name: Tests Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: npm install
+
+      - name: AVA Tests
+        run: npx ava
