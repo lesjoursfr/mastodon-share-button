@@ -1,10 +1,17 @@
 import test from "ava";
 import { JSDOM } from "jsdom";
-import { createFromTemplate, hasAttribute, getAttribute, setAttribute } from "../src/core/dom.js";
+import { createFromTemplate, hasClass, hasAttribute, getAttribute, setAttribute } from "../src/core/dom.js";
 
 test("core.dom.createFromTemplate", (t) => {
   const node1 = createFromTemplate('<span attr1="value1" attr2="value2"><b>Bold text</b></span>');
   t.is(node1.outerHTML, '<span attr1="value1" attr2="value2"><b>Bold text</b></span>');
+});
+
+test("core.dom.hasClass", (t) => {
+  const dom = new JSDOM('<!DOCTYPE html><p class="bar">Hello world</p>');
+
+  t.false(hasClass(dom.window.document.querySelector("p"), "foo"));
+  t.true(hasClass(dom.window.document.querySelector("p"), "bar"));
 });
 
 test("core.dom.hasAttribute", (t) => {

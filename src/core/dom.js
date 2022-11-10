@@ -10,6 +10,20 @@ export function createFromTemplate(template) {
 }
 
 /**
+ * Check if the node has the given class name.
+ * @param {Node} node the element to check
+ * @param {(string|Array)} className a class name
+ * @returns {boolean} true if the node has the given class name
+ */
+export function hasClass(node, className) {
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return false;
+  }
+
+  return node.classList.contains(className);
+}
+
+/**
  * Check if the node has the given attribute.
  * @param {HTMLElement} node
  * @param {string} attribute

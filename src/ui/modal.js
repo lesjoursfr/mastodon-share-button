@@ -1,4 +1,4 @@
-import { createFromTemplate } from "../core/dom.js";
+import { createFromTemplate, hasClass } from "../core/dom.js";
 
 function MastodonShareModal(options) {
   this.lang = options.lang;
@@ -42,15 +42,27 @@ MastodonShareModal.prototype.show = function () {
   // Listen clicks on buttons
   this.modalEl.querySelector(".mastodon-share-modal-dismiss").addEventListener("click", this.dismiss.bind(this));
   this.modalEl.querySelector(".mastodon-share-modal-confirm").addEventListener("click", this.confirm.bind(this));
+
+  // Add an event listener on the body to close the modal
+  this.bodyClickEventListener = this.onBodyClick.bind(this);
+  document.body.addEventListener("click", this.bodyClickEventListener);
+};
+
+MastodonShareModal.prototype.close = function () {
+  // Remove the body event listener
+  document.body.removeEventListener("click", this.bodyClickEventListener);
+
+  // Remove the element from the dom
+  this.modalEl.remove();
+  this.onClose();
 };
 
 MastodonShareModal.prototype.dismiss = function (event) {
   // Prevent default
   event.preventDefault();
 
-  // Remove the element from the dom
-  this.modalEl.remove();
-  this.onClose();
+  // Close the modal
+  this.close();
 };
 
 MastodonShareModal.prototype.confirm = function (event) {
@@ -63,12 +75,23 @@ MastodonShareModal.prototype.confirm = function (event) {
     return;
   }
 
-  // Remove the element from the dom
-  this.modalEl.remove();
-  this.onClose();
+  // Close the modal
+  this.close();
 
   // Call the callback
   this.onConfirmation(this.editedMessageEl.value, this.selectedInstanceEl.value);
+};
+
+MastodonShareModal.prototype.onBodyClick = function (event) {
+  // Check if the element (or one of it's parents) is inside the modal
+  let target = event.target;
+  while (target !== null && !hasClass(target, "mastodon-share-modal")) {
+    target = target.parentElement;
+  }
+  if (target === null) {
+    // The click is not inside the modal, we can close it
+    this.close();
+  }
 };
 
 const matomoSvgLogo = `
