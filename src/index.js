@@ -31,8 +31,12 @@ function MastodonShareButtons(options) {
  * @param {MouseEvent} event
  */
 MastodonShareButtons.prototype.onClick = function (event) {
-  // Check if the element has a mastodon-sharing-text attribute
-  if (!hasAttribute(event.target, "mastodon-sharing-text")) {
+  // Check if the element (or one of it's parents) has a mastodon-sharing-text attribute
+  let target = event.target;
+  while (target !== null && !hasAttribute(target, "mastodon-sharing-text")) {
+    target = target.parentElement;
+  }
+  if (target === null) {
     // This is not for us
     return;
   }
@@ -46,7 +50,7 @@ MastodonShareButtons.prototype.onClick = function (event) {
   }
 
   // Get the text message
-  const textMessage = getAttribute(event.target, "mastodon-sharing-text");
+  const textMessage = getAttribute(target, "mastodon-sharing-text");
 
   // Show the modal to the user
   this.modal = new MastodonShareModal({
