@@ -1,6 +1,6 @@
 {
 	"name": "@lesjoursfr/mastodon-share-button",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "Simple module to share content to Mastodon.",
 	"license": "MIT",
 	"repository": "lesjoursfr/mastodon-share-button",
