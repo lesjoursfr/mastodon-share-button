@@ -1,7 +1,7 @@
 {
 	"name": "@lesjoursfr/mastodon-share-button",
-	"version": "0.0.1",
-	"description": "Simple WYSIWYG editor.",
+	"version": "0.0.2",
+	"description": "Simple module to share content to Mastodon.",
 	"license": "MIT",
 	"repository": "lesjoursfr/mastodon-share-button",
 	"homepage": "https://github.com/lesjoursfr/mastodon-share-button#readme",

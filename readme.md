@@ -9,11 +9,11 @@ Simple module to share content to Mastodon.
 
 ```javascript
 import MastodonShareButtons from "@lesjoursfr/mastodon-share-button";
-import fr from "@lesjoursfr/mastodon-share-button/lang/fr";
+import mastodonShareButtonsFr from "@lesjoursfr/mastodon-share-button/src/lang/fr";
 
 /* Initialize the module */
 new MastodonShareButtons({
-	lang: fr,
+	lang: mastodonShareButtonsFr,
 	saveInstance: true,
 });
 ```
