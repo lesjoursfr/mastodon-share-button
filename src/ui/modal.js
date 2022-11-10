@@ -19,7 +19,7 @@ MastodonShareModal.prototype.show = function () {
     <span class="mastodon-share-label">${this.lang.message}</span>
     <textarea name="mastodon-share-text" class="mastodon-share-modal-text"></textarea>
     <span class="mastodon-share-label">${this.lang.instance}</span>
-    <input type="url" name="mastodon-share-instance" placeholder="https://mamot.fr" pattern="https://.*" class="mastodon-share-modal-instance" required />
+    <input type="url" name="mastodon-share-instance" placeholder="https://exemple.social" pattern="https://.*" class="mastodon-share-modal-instance" required />
   </div>
   <div class="mastodon-share-modal-btns">
     <button class="mastodon-share-modal-dismiss">
