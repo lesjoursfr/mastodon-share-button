@@ -1,5 +1,6 @@
 @use "sass:color";
 
+$color-mastodon-white: #fff;
 $color-mastodon-text: #9baec8;
 $color-mastodon-background: #191b22;
 $color-mastodon-colored-button: #595aff;
@@ -68,11 +69,21 @@ $color-mastodon-input-background: #282c37;
 	border: 1px solid $color-mastodon-outlined-button;
 	color: $color-mastodon-outlined-button;
 	margin-left: auto;
+
+	&:hover,
+	&:focus {
+		color: $color-mastodon-outlined-button;
+	}
 }
 
 .mastodon-share-modal-confirm {
 	background: $color-mastodon-colored-button;
 	border: 1px solid $color-mastodon-colored-button;
-	color: $color-mastodon-text;
+	color: $color-mastodon-white;
 	margin-left: 20px;
+
+	&:hover,
+	&:focus {
+		color: $color-mastodon-white;
+	}
 }
