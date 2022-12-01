@@ -58,7 +58,7 @@
 		"eslint-plugin-promise": "^6.1.1",
 		"js-cookie": "^3.0.1",
 		"jsdom": "^20.0.3",
-		"mini-css-extract-plugin": "^2.7.0",
+		"mini-css-extract-plugin": "^2.7.1",
 		"postcss": "^8.4.19",
 		"prettier": "^2.8.0",
 		"sass": "^1.56.1",
