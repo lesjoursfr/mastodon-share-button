@@ -1,3 +1,4 @@
+/* globals global:true */
 /**
  * Sources :
  * - https://github.com/lukechilds/browser-env/blob/master/src/index.js (browserEnv function)

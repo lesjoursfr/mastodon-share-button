@@ -2,12 +2,11 @@
 module.exports = {
 	root: true,
 	env: {
+		es2022: true,
 		browser: true,
-		es2020: true,
 	},
-	extends: ["standard", "prettier"],
+	extends: ["eslint:recommended", "prettier"],
 	parserOptions: {
-		ecmaVersion: 2020,
 		sourceType: "module",
 	},
 };

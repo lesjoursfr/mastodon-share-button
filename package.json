@@ -12,7 +12,7 @@
 		"access": "public"
 	},
 	"engines": {
-		"node": ">=16.18.1 || >=18.12.1"
+		"node": "18.x || 20.x"
 	},
 	"browserslist": [
 		"Chrome >= 60",
@@ -49,12 +49,8 @@
 		"ava": "^5.3.1",
 		"babel-loader": "^9.1.2",
 		"css-loader": "^6.8.1",
-		"eslint": "^8.43.0",
+		"eslint": "^8.44.0",
 		"eslint-config-prettier": "^8.8.0",
-		"eslint-config-standard": "^17.1.0",
-		"eslint-plugin-import": "^2.27.5",
-		"eslint-plugin-n": "^16.0.1",
-		"eslint-plugin-promise": "^6.1.1",
 		"js-cookie": "^3.0.5",
 		"jsdom": "^22.1.0",
 		"mini-css-extract-plugin": "^2.7.6",
@@ -72,5 +68,5 @@
 	"peerDependencies": {
 		"js-cookie": "^3.0.5"
 	},
-	"packageManager": "yarn@3.6.0"
+	"packageManager": "yarn@3.6.1"
 }
