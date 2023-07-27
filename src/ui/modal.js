@@ -1,4 +1,4 @@
-import { createFromTemplate, hasClass } from "../core/dom.js";
+import { addClass, createFromTemplate, hasClass, removeClass } from "../core/dom.js";
 
 function MastodonShareModal(options) {
   this.lang = options.lang;
@@ -17,9 +17,9 @@ MastodonShareModal.prototype.show = function () {
   </div>
   <div class="mastodon-share-modal-form">
     <span class="mastodon-share-label">${this.lang.message}</span>
-    <textarea name="mastodon-share-text" class="mastodon-share-modal-text"></textarea>
+    <textarea name="mastodon-share-text" class="mastodon-share-modal-text" required></textarea>
     <span class="mastodon-share-label">${this.lang.instance}</span>
-    <input type="url" name="mastodon-share-instance" placeholder="https://exemple.social" pattern="https://.*" class="mastodon-share-modal-instance" required />
+    <input type="text" name="mastodon-share-instance" placeholder="https://exemple.social" class="mastodon-share-modal-instance" required />
   </div>
   <div class="mastodon-share-modal-btns">
     <button class="mastodon-share-modal-dismiss">
@@ -70,7 +70,26 @@ MastodonShareModal.prototype.confirm = function (event) {
   event.preventDefault();
 
   // Check input validity
-  if (!this.editedMessageEl.checkValidity() || !this.selectedInstanceEl.checkValidity()) {
+  let isInvalid = false;
+  if (this.editedMessageEl.checkValidity()) {
+    removeClass(this.editedMessageEl, "mastodon-share-modal-invalid");
+  } else {
+    addClass(this.editedMessageEl, "mastodon-share-modal-invalid");
+    isInvalid = true;
+  }
+  if (
+    this.selectedInstanceEl.checkValidity() &&
+    /^(https?:\/\/)?(?:([a-z0-9-]+)\.)*([a-z0-9-]{1,61})\.([a-z0-9]{2,7})$/.test(this.selectedInstanceEl.value)
+  ) {
+    removeClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
+    if (!/^https?:\/\//.test(this.selectedInstanceEl.value)) {
+      this.selectedInstanceEl.value = `https://${this.selectedInstanceEl.value}`;
+    }
+  } else {
+    addClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
+    isInvalid = true;
+  }
+  if (isInvalid) {
     // Nothing to do
     return;
   }

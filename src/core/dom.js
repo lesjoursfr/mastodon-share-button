@@ -24,6 +24,46 @@ export function hasClass(node, className) {
 }
 
 /**
+ * Add the class to the node's class attribute.
+ * @param {HTMLElement} node
+ * @param {string|Array} className
+ * @returns {HTMLElement} the element
+ */
+export function addClass(node, className) {
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return node;
+  }
+
+  if (typeof className === "string") {
+    node.classList.add(className);
+  } else {
+    node.classList.add(...className);
+  }
+
+  return node;
+}
+
+/**
+ * Remove the class from the node's class attribute.
+ * @param {HTMLElement} node
+ * @param {string} className
+ * @returns {HTMLElement} the element
+ */
+export function removeClass(node, className) {
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return node;
+  }
+
+  if (typeof className === "string") {
+    node.classList.remove(className);
+  } else {
+    node.classList.remove(...className);
+  }
+
+  return node;
+}
+
+/**
  * Check if the node has the given attribute.
  * @param {HTMLElement} node
  * @param {string} attribute

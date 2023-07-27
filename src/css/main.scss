@@ -6,6 +6,7 @@ $color-mastodon-background: #191b22;
 $color-mastodon-colored-button: #595aff;
 $color-mastodon-outlined-button: #8c8dff;
 $color-mastodon-input-background: #282c37;
+$color-mastodon-error: #df405a;
 
 .mastodon-share-modal {
 	background: $color-mastodon-background;
@@ -47,6 +48,10 @@ $color-mastodon-input-background: #282c37;
 	outline: 0;
 	padding: 15px 30px 15px 15px;
 	width: 100%;
+
+	&.mastodon-share-modal-invalid {
+		border: 1px solid $color-mastodon-error;
+	}
 }
 
 .mastodon-share-modal-text {

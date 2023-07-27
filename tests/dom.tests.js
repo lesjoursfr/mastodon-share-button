@@ -1,6 +1,14 @@
 import test from "ava";
 import { JSDOM } from "jsdom";
-import { createFromTemplate, hasClass, hasAttribute, getAttribute, setAttribute } from "../src/core/dom.js";
+import {
+  createFromTemplate,
+  hasClass,
+  addClass,
+  removeClass,
+  hasAttribute,
+  getAttribute,
+  setAttribute,
+} from "../src/core/dom.js";
 
 test("core.dom.createFromTemplate", (t) => {
   const node1 = createFromTemplate('<span attr1="value1" attr2="value2"><b>Bold text</b></span>');
@@ -9,9 +17,30 @@ test("core.dom.createFromTemplate", (t) => {
 
 test("core.dom.hasClass", (t) => {
   const dom = new JSDOM('<!DOCTYPE html><p class="bar">Hello world</p>');
+  const node = dom.window.document.querySelector("p");
 
-  t.false(hasClass(dom.window.document.querySelector("p"), "foo"));
-  t.true(hasClass(dom.window.document.querySelector("p"), "bar"));
+  t.false(hasClass(node, "foo"));
+  t.true(hasClass(node, "bar"));
+});
+
+test("core.dom.addClass", (t) => {
+  const dom = new JSDOM('<!DOCTYPE html><p class="bar">Hello world</p>');
+  const node = dom.window.document.querySelector("p");
+  addClass(node, "foo");
+  addClass(node, ["abc", "def"]);
+
+  const classList = node.classList;
+  t.true(["bar", "foo", "abc", "def"].every((className) => classList.contains(className)));
+});
+
+test("core.dom.removeClass", (t) => {
+  const dom = new JSDOM('<!DOCTYPE html><p class="bar foo abc def">Hello world</p>');
+  const node = dom.window.document.querySelector("p");
+  removeClass(node, "foo");
+  removeClass(node, ["abc", "def"]);
+
+  const classList = node.classList;
+  t.false(["foo", "abc", "def"].some((className) => classList.contains(className)));
 });
 
 test("core.dom.hasAttribute", (t) => {
