@@ -24,7 +24,7 @@
 	"main": "src/index.js",
 	"type": "module",
 	"scripts": {
-		"freshlock": "rm -rf node_modules/ && rm .yarn/install-state.gz && rm -r .yarn/cache/ && rm yarn.lock && yarn",
+		"freshlock": "rm -rf node_modules/ && rm .yarn/install-state.gz && rm yarn.lock && yarn",
 		"eslint-check": "eslint-config-prettier src/index.js",
 		"check-js": "eslint . --ext .js",
 		"check-sass": "stylelint **/*.scss",
