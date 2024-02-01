@@ -52,7 +52,7 @@
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"js-cookie": "^3.0.5",
-		"jsdom": "^23.0.1",
+		"jsdom": "^24.0.0",
 		"mini-css-extract-plugin": "^2.7.6",
 		"postcss": "^8.4.32",
 		"prettier": "^3.1.1",
