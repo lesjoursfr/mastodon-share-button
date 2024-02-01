@@ -14,19 +14,29 @@
 		"**/node_modules/**": true,
 		"**/.yarn/**": true
 	},
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.codeActionsOnSave": {
-		"source.fixAll": "explicit"
-	},
-	"eslint.format.enable": true,
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit",
+		"source.organizeImports": "explicit"
+	},
+	"eslint.enable": true,
+	"eslint.format.enable": true,
+	"prettier.configPath": ".prettierrc.cjs",
+	"prettier.ignorePath": ".prettierignore",
 	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
-	"stylelint.validate": ["css", "scss"],
-	"[scss]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	"stylelint.enable": true,
+	"stylelint.validate": ["css", "scss"]
 }
