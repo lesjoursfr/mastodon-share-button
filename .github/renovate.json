@@ -1,21 +1,26 @@
 {
-	"extends": ["config:base"],
+	"extends": ["config:recommended", ":semanticCommits"],
 	"timezone": "Europe/Paris",
 	"schedule": [
-		"after 10:00 am and before 5:00 pm on the first day of the month"
+		"after 8:00 am and before 10:00 am on the first day of the month"
 	],
 	"rangeStrategy": "bump",
 	"packageRules": [
 		{
 			"matchDatasources": ["npm"],
-			"stabilityDays": 3
+			"minimumReleaseAge": "3 days"
 		},
 		{
 			"matchDatasources": ["npm"],
 			"matchPackagePatterns": ["*"],
 			"matchUpdateTypes": ["minor", "patch"],
 			"groupName": "all non-major dependencies",
-			"groupSlug": "all-minor-patch"
+			"groupSlug": "all-minor-patch",
+			"automerge": true,
+			"automergeType": "pr",
+			"automergeStrategy": "squash"
 		}
-	]
+	],
+	"ignoreDeps": [],
+	"ignorePaths": []
 }
