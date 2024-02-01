@@ -20,7 +20,9 @@ new MastodonShareButtons({
 
 ```html
 <!-- Create a button -->
-<button mastodon-sharing-text="Mastodon sharing button! https://github.com/lesjoursfr/mastodon-share-button">
+<button
+	mastodon-sharing-text="Mastodon sharing button! https://github.com/lesjoursfr/mastodon-share-button"
+>
 	Share on Mastodon
 </button>
 ```
