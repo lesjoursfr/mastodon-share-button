@@ -1,9 +1,7 @@
 {
 	"extends": ["config:recommended", ":semanticCommits"],
 	"timezone": "Europe/Paris",
-	"schedule": [
-		"after 8:00 am and before 6:00 pm on the first day of the month"
-	],
+	"schedule": ["before 4:00 am on the first day of the month"],
 	"rangeStrategy": "bump",
 	"packageRules": [
 		{
