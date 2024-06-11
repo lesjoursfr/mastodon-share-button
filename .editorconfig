@@ -12,6 +12,6 @@ insert_final_newline = false
 indent_style = space
 indent_size = 2
 
-[*.js]
+[*.{js,ts,cjs,mjs}]
 indent_style = space
 indent_size = 2
