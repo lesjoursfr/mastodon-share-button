@@ -9,9 +9,9 @@ const config = {
       },
     },
     {
-      files: ["tsconfig.json"],
+      files: ["*.scss"],
       options: {
-        trailingComma: "none",
+        singleQuote: true,
       },
     },
   ],

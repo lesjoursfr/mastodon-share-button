@@ -18,7 +18,7 @@ function MastodonShareButtons(options) {
 
   // Check if we have to set a cookie to memorize the instance
   this.saveInstance = options.saveInstance === true;
-  this.savedInstanceUrl = this.saveInstance === true ? Cookies.get("mastodonInstance") ?? null : null;
+  this.savedInstanceUrl = this.saveInstance === true ? (Cookies.get("mastodonInstance") ?? null) : null;
 
   // Listen click events on buttons
   for (const button of this.buttons) {
