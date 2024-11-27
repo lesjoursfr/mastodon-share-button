@@ -57,7 +57,7 @@
 		"jsdom": "^25.0.1",
 		"mini-css-extract-plugin": "^2.9.2",
 		"postcss": "^8.4.49",
-		"prettier": "^3.3.3",
+		"prettier": "^3.4.1",
 		"sass": "^1.81.0",
 		"sass-loader": "^16.0.3",
 		"style-loader": "^4.0.0",
@@ -70,5 +70,5 @@
 	"peerDependencies": {
 		"js-cookie": "^3.0.5"
 	},
-	"packageManager": "yarn@4.5.2"
+	"packageManager": "yarn@4.5.3"
 }
