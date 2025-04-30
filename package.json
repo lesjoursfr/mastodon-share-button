@@ -46,29 +46,29 @@
 	"devDependencies": {
 		"@babel/core": "^7.26.10",
 		"@babel/preset-env": "^7.26.9",
-		"@eslint/js": "^9.23.0",
+		"@eslint/js": "^9.25.1",
 		"ava": "^6.2.0",
 		"babel-loader": "^10.0.0",
 		"css-loader": "^7.1.2",
-		"eslint": "^9.23.0",
-		"eslint-config-prettier": "^10.1.1",
+		"eslint": "^9.25.1",
+		"eslint-config-prettier": "^10.1.2",
 		"globals": "^16.0.0",
 		"js-cookie": "^3.0.5",
-		"jsdom": "^26.0.0",
+		"jsdom": "^26.1.0",
 		"mini-css-extract-plugin": "^2.9.2",
 		"postcss": "^8.5.3",
 		"prettier": "^3.5.3",
-		"sass": "^1.86.1",
+		"sass": "^1.87.0",
 		"sass-loader": "^16.0.5",
 		"style-loader": "^4.0.0",
-		"stylelint": "^16.17.0",
+		"stylelint": "^16.19.1",
 		"stylelint-config-sass-guidelines": "^12.1.0",
-		"webpack": "^5.98.0",
+		"webpack": "^5.99.7",
 		"webpack-cli": "^6.0.1",
 		"webpack-dev-server": "^5.2.1"
 	},
 	"peerDependencies": {
 		"js-cookie": "^3.0.5"
 	},
-	"packageManager": "yarn@4.8.1"
+	"packageManager": "yarn@4.9.1"
 }
