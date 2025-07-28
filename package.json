@@ -46,11 +46,11 @@
 	"devDependencies": {
 		"@babel/core": "^7.28.0",
 		"@babel/preset-env": "^7.28.0",
-		"@eslint/js": "^9.31.0",
+		"@eslint/js": "^9.32.0",
 		"ava": "^6.4.1",
 		"babel-loader": "^10.0.0",
 		"css-loader": "^7.1.2",
-		"eslint": "^9.31.0",
+		"eslint": "^9.32.0",
 		"eslint-config-prettier": "^10.1.8",
 		"globals": "^16.3.0",
 		"js-cookie": "^3.0.5",
