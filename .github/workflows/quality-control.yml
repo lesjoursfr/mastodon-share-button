@@ -2,12 +2,9 @@ name: QC Checks
 
 on:
   push:
-    branches-ignore:
-      - renovate/*
-      - stable
-      - beta
-    tags-ignore:
-      - "**"
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   checks:
@@ -17,6 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - run: corepack enable
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
@@ -45,6 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - run: corepack enable
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
