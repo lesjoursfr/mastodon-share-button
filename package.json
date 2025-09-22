@@ -70,5 +70,10 @@
 	"peerDependencies": {
 		"js-cookie": "^3.0.5"
 	},
-	"packageManager": "yarn@4.9.4"
+	"dependenciesMeta": {
+		"@parcel/watcher": {
+			"built": true
+		}
+	},
+	"packageManager": "yarn@4.10.2"
 }
