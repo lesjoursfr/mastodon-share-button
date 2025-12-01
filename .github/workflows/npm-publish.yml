@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -28,6 +29,6 @@ jobs:
           yarn config set enableImmutableInstalls false
           yarn install
 
-      - run: npm publish
+      - run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_LESJOURS_TOKEN }}
