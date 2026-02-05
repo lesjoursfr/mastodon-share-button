@@ -4,24 +4,13 @@
  * - https://github.com/lukechilds/browser-env/blob/master/src/index.js (browserEnv function)
  * - https://github.com/lukechilds/window/blob/master/src/index.js (Window class)
  */
-import { JSDOM, ResourceLoader } from "jsdom";
+import { JSDOM } from "jsdom";
 
 // Class to return a window instance.
 // Accepts a jsdom config object.
 class Window {
   constructor(jsdomConfig = {}) {
-    const { proxy, strictSSL, userAgent } = jsdomConfig;
-    const resources = new ResourceLoader({
-      proxy,
-      strictSSL,
-      userAgent,
-    });
-    return new JSDOM(
-      "",
-      Object.assign(jsdomConfig, {
-        resources,
-      })
-    ).window;
+    return new JSDOM("", jsdomConfig).window;
   }
 }
 
