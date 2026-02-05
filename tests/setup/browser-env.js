@@ -9,8 +9,7 @@ import { JSDOM } from "jsdom";
 // Class to return a window instance.
 // Accepts a jsdom config object.
 class Window {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(jsdomConfig: any = {}) {
+  constructor(jsdomConfig) {
     const { userAgent } = jsdomConfig;
     return new JSDOM(
       "",
@@ -35,7 +34,7 @@ const defaultJsdomConfig = {
 // conflict with global browser properties.
 const forceOverrideForKeys = ["Event", "CustomEvent"]; // We need to force these overrides to use events in AVA tests
 const protectedproperties: Array<string> = (() =>
-  (Object.getOwnPropertyNames(new Window(defaultJsdomConfig)) as Array<keyof Window>)
+  Object.getOwnPropertyNames(new Window(defaultJsdomConfig))
     .filter((prop) => typeof global[prop] !== "undefined")
     .filter((prop) => forceOverrideForKeys.indexOf(prop) === -1))();
 protectedproperties.push("undefined");
@@ -51,7 +50,7 @@ const browserEnv = function (...args: Array<any>) {
   const window = new Window(Object.assign({}, userJsdomConfig, defaultJsdomConfig));
 
   // Get all global browser properties
-  (Object.getOwnPropertyNames(window) as Array<keyof Window>)
+  Object.getOwnPropertyNames(window)
     // Remove protected properties
     .filter((prop) => protectedproperties.indexOf(prop) === -1)
     // If we're only applying specific required properties remove everything else
