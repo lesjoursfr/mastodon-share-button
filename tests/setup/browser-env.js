@@ -4,22 +4,17 @@
  * - https://github.com/lukechilds/browser-env/blob/master/src/index.js (browserEnv function)
  * - https://github.com/lukechilds/window/blob/master/src/index.js (Window class)
  */
-import { JSDOM, ResourceLoader } from "jsdom";
+import { JSDOM } from "jsdom";
 
 // Class to return a window instance.
 // Accepts a jsdom config object.
 class Window {
-  constructor(jsdomConfig = {}) {
-    const { proxy, strictSSL, userAgent } = jsdomConfig;
-    const resources = new ResourceLoader({
-      proxy,
-      strictSSL,
-      userAgent,
-    });
+  constructor(jsdomConfig) {
+    const { userAgent } = jsdomConfig;
     return new JSDOM(
       "",
       Object.assign(jsdomConfig, {
-        resources,
+        resources: userAgent ? { userAgent: userAgent } : undefined,
       })
     ).window;
   }
@@ -37,14 +32,16 @@ const defaultJsdomConfig = {
 
 // IIFE executed on import to return an array of global Node.js properties that
 // conflict with global browser properties.
+const forceOverrideForKeys = ["Event", "CustomEvent"]; // We need to force these overrides to use events in AVA tests
 const protectedproperties = (() =>
-  Object.getOwnPropertyNames(new Window(defaultJsdomConfig)).filter((prop) => typeof global[prop] !== "undefined"))();
+  Object.getOwnPropertyNames(new Window(defaultJsdomConfig))
+    .filter((prop) => typeof global[prop] !== "undefined")
+    .filter((prop) => forceOverrideForKeys.indexOf(prop) === -1))();
 protectedproperties.push("undefined");
 
 // Sets up global browser environment
-const browserEnv = function () {
+const browserEnv = function (...args) {
   // Extract options from args
-  const args = Array.from(arguments);
   const properties = args.filter((arg) => Array.isArray(arg))[0];
   const userJsdomConfig = args.filter((arg) => !Array.isArray(arg))[0] || {};
 
