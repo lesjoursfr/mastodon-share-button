@@ -50,21 +50,21 @@
 		"ava": "7.0.0",
 		"babel-loader": "10.1.1",
 		"css-loader": "7.1.4",
-		"eslint": "10.0.3",
+		"eslint": "10.1.0",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "17.4.0",
 		"js-cookie": "3.0.5",
-		"jsdom": "29.0.0",
-		"mini-css-extract-plugin": "2.10.1",
+		"jsdom": "29.0.1",
+		"mini-css-extract-plugin": "2.10.2",
 		"postcss": "8.5.8",
 		"prettier": "3.8.1",
 		"sass": "1.98.0",
 		"sass-loader": "16.0.7",
 		"style-loader": "4.0.0",
-		"stylelint": "17.4.0",
+		"stylelint": "17.6.0",
 		"stylelint-config-standard-scss": "17.0.0",
 		"webpack": "5.105.4",
-		"webpack-cli": "7.0.1",
+		"webpack-cli": "7.0.2",
 		"webpack-dev-server": "5.2.3"
 	},
 	"peerDependencies": {
@@ -75,5 +75,5 @@
 			"built": true
 		}
 	},
-	"packageManager": "yarn@4.12.0"
+	"packageManager": "yarn@4.13.0"
 }
