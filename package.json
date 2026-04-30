@@ -50,7 +50,7 @@
 		"ava": "7.0.0",
 		"babel-loader": "10.1.1",
 		"css-loader": "7.1.4",
-		"eslint": "10.2.0",
+		"eslint": "10.2.1",
 		"eslint-config-prettier": "10.1.8",
 		"globals": "17.5.0",
 		"js-cookie": "3.0.5",
@@ -61,7 +61,7 @@
 		"sass": "1.99.0",
 		"sass-loader": "16.0.7",
 		"style-loader": "4.0.0",
-		"stylelint": "17.8.0",
+		"stylelint": "17.9.0",
 		"stylelint-config-standard-scss": "17.0.0",
 		"webpack": "5.106.2",
 		"webpack-cli": "7.0.2",
@@ -75,5 +75,5 @@
 			"built": true
 		}
 	},
-	"packageManager": "yarn@4.13.0"
+	"packageManager": "yarn@4.14.1"
 }
