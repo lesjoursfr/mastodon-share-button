@@ -29,6 +29,10 @@ jobs:
         run: |
           yarn config set enableImmutableInstalls false
           yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: npm run build
 
       - run: npm publish
         env:

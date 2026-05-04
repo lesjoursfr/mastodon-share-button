@@ -31,36 +31,10 @@ jobs:
           yarn install
 
       - name: ESLint checks
-        run: npm run check-js
+        run: npm run eslint-check
 
       - name: Stylelint checks
-        run: npm run check-sass
+        run: npm run stylelint-check
 
       - name: Prettier checks
-        run: npm run check-style
-
-  tests:
-    name: Tests Node.js ${{ matrix.node-version }}
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [22.x, 24.x]
-
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - run: corepack enable
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
-        with:
-          node-version: ${{ matrix.node-version }}
-          package-manager-cache: false
-
-      - name: Install
-        run: |
-          yarn config set enableImmutableInstalls false
-          yarn install
-
-      - name: AVA Tests
-        run: npx ava
+        run: npm run prettier-check

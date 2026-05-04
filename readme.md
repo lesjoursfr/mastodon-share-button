@@ -8,8 +8,8 @@ Simple module to share content to Mastodon.
 # How to use
 
 ```javascript
-import MastodonShareButtons from "@lesjoursfr/mastodon-share-button";
-import mastodonShareButtonsFr from "@lesjoursfr/mastodon-share-button/src/lang/fr";
+import { MastodonShareButtons } from "@lesjoursfr/mastodon-share-button";
+import mastodonShareButtonsFr from "@lesjoursfr/mastodon-share-button/dist/lang/fr";
 
 /* Initialize the module */
 new MastodonShareButtons({

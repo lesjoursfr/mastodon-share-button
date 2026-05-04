@@ -1,0 +1,15 @@
+{
+	"extends": "./node_modules/@tsconfig/next/tsconfig.json",
+	"compilerOptions": {
+		"target": "esnext",
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"types": ["node"],
+		"sourceMap": false,
+		"noEmit": false,
+		"declaration": true,
+		"declarationDir": "./dist"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "**/*.spec.ts"]
+}

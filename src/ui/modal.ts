@@ -1,16 +1,36 @@
-import { addClass, createFromTemplate, hasClass, removeClass } from "../core/dom.js";
+import { addClass, createFromTemplate, hasClass, removeClass } from "@lesjoursfr/browser-tools";
+import { MastodonShareButtonsLang } from "../options.js";
 
-function MastodonShareModal(options) {
-  this.lang = options.lang;
-  this.text = options.text || "";
-  this.instance = options.instance || "";
-  this.onConfirmation = options.onConfirmation;
-  this.onClose = options.onClose;
-}
+export type MastodonShareModalOptions = {
+  lang: MastodonShareButtonsLang;
+  text: string | null;
+  instance: string | null;
+  onConfirmation: (editedMessage: string, selectedInstance: string) => void;
+  onClose: () => void;
+};
 
-MastodonShareModal.prototype.show = function () {
-  // Add the modal to the DOM
-  this.modalEl = createFromTemplate(`
+export class MastodonShareModal {
+  private lang: MastodonShareButtonsLang;
+  private text: string;
+  private instance: string;
+  private onConfirmation: (editedMessage: string, selectedInstance: string) => void;
+  private onClose: () => void;
+  private modalEl!: HTMLElement;
+  private editedMessageEl!: HTMLTextAreaElement;
+  private selectedInstanceEl!: HTMLInputElement;
+  private bodyClickEventListener!: (event: Event) => void;
+
+  constructor(options: MastodonShareModalOptions) {
+    this.lang = options.lang;
+    this.text = options.text || "";
+    this.instance = options.instance || "";
+    this.onConfirmation = options.onConfirmation;
+    this.onClose = options.onClose;
+  }
+
+  public show(): void {
+    // Add the modal to the DOM
+    this.modalEl = createFromTemplate(`
 <div class="mastodon-share-modal">
   <div class="mastodon-share-modal-logo">
     ${matomoSvgLogo}
@@ -31,87 +51,88 @@ MastodonShareModal.prototype.show = function () {
   </div>
 </div>
   `);
-  document.body.appendChild(this.modalEl);
+    document.body.appendChild(this.modalEl);
 
-  // Initialize inputs
-  this.editedMessageEl = this.modalEl.querySelector('[name="mastodon-share-text"]');
-  this.editedMessageEl.value = this.text;
-  this.selectedInstanceEl = this.modalEl.querySelector('[name="mastodon-share-instance"]');
-  this.selectedInstanceEl.value = this.instance;
+    // Initialize inputs
+    this.editedMessageEl = this.modalEl.querySelector('[name="mastodon-share-text"]')!;
+    this.editedMessageEl.value = this.text;
+    this.selectedInstanceEl = this.modalEl.querySelector('[name="mastodon-share-instance"]')!;
+    this.selectedInstanceEl.value = this.instance;
 
-  // Listen clicks on buttons
-  this.modalEl.querySelector(".mastodon-share-modal-dismiss").addEventListener("click", this.dismiss.bind(this));
-  this.modalEl.querySelector(".mastodon-share-modal-confirm").addEventListener("click", this.confirm.bind(this));
+    // Listen clicks on buttons
+    this.modalEl.querySelector(".mastodon-share-modal-dismiss")!.addEventListener("click", this.dismiss.bind(this));
+    this.modalEl.querySelector(".mastodon-share-modal-confirm")!.addEventListener("click", this.confirm.bind(this));
 
-  // Add an event listener on the body to close the modal
-  this.bodyClickEventListener = this.onBodyClick.bind(this);
-  document.body.addEventListener("click", this.bodyClickEventListener);
-};
-
-MastodonShareModal.prototype.close = function () {
-  // Remove the body event listener
-  document.body.removeEventListener("click", this.bodyClickEventListener);
-
-  // Remove the element from the dom
-  this.modalEl.remove();
-  this.onClose();
-};
-
-MastodonShareModal.prototype.dismiss = function (event) {
-  // Prevent default
-  event.preventDefault();
-
-  // Close the modal
-  this.close();
-};
-
-MastodonShareModal.prototype.confirm = function (event) {
-  // Prevent default
-  event.preventDefault();
-
-  // Check input validity
-  let isInvalid = false;
-  if (this.editedMessageEl.checkValidity()) {
-    removeClass(this.editedMessageEl, "mastodon-share-modal-invalid");
-  } else {
-    addClass(this.editedMessageEl, "mastodon-share-modal-invalid");
-    isInvalid = true;
-  }
-  if (
-    this.selectedInstanceEl.checkValidity() &&
-    /^(https?:\/\/)?(?:([a-z0-9-]+)\.)*([a-z0-9-]{1,61})\.([a-z0-9]{2,7})$/.test(this.selectedInstanceEl.value)
-  ) {
-    removeClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
-    if (!/^https?:\/\//.test(this.selectedInstanceEl.value)) {
-      this.selectedInstanceEl.value = `https://${this.selectedInstanceEl.value}`;
-    }
-  } else {
-    addClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
-    isInvalid = true;
-  }
-  if (isInvalid) {
-    // Nothing to do
-    return;
+    // Add an event listener on the body to close the modal
+    this.bodyClickEventListener = this.onBodyClick.bind(this);
+    document.body.addEventListener("click", this.bodyClickEventListener);
   }
 
-  // Close the modal
-  this.close();
+  public close(): void {
+    // Remove the body event listener
+    document.body.removeEventListener("click", this.bodyClickEventListener);
 
-  // Call the callback
-  this.onConfirmation(this.editedMessageEl.value, this.selectedInstanceEl.value);
-};
-
-MastodonShareModal.prototype.onBodyClick = function (event) {
-  // Check if the element (or one of it's parents) is inside the modal
-  let target = event.target;
-  while (target !== null && !hasClass(target, "mastodon-share-modal")) {
-    target = target.parentElement;
+    // Remove the element from the dom
+    this.modalEl.remove();
+    this.onClose();
   }
-  if (target === null) {
-    // The click is not inside the modal, we can close it
+
+  public dismiss(event: Event): void {
+    // Prevent default
+    event.preventDefault();
+
+    // Close the modal
     this.close();
   }
-};
+
+  public confirm(event: Event): void {
+    // Prevent default
+    event.preventDefault();
+
+    // Check input validity
+    let isInvalid = false;
+    if (this.editedMessageEl.checkValidity()) {
+      removeClass(this.editedMessageEl, "mastodon-share-modal-invalid");
+    } else {
+      addClass(this.editedMessageEl, "mastodon-share-modal-invalid");
+      isInvalid = true;
+    }
+    if (
+      this.selectedInstanceEl.checkValidity() &&
+      /^(https?:\/\/)?(?:([a-z0-9-]+)\.)*([a-z0-9-]{1,61})\.([a-z0-9]{2,7})$/.test(this.selectedInstanceEl.value)
+    ) {
+      removeClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
+      if (!/^https?:\/\//.test(this.selectedInstanceEl.value)) {
+        this.selectedInstanceEl.value = `https://${this.selectedInstanceEl.value}`;
+      }
+    } else {
+      addClass(this.selectedInstanceEl, "mastodon-share-modal-invalid");
+      isInvalid = true;
+    }
+    if (isInvalid) {
+      // Nothing to do
+      return;
+    }
+
+    // Close the modal
+    this.close();
+
+    // Call the callback
+    this.onConfirmation(this.editedMessageEl.value, this.selectedInstanceEl.value);
+  }
+
+  public onBodyClick(event: Event): void {
+    // Check if the element (or one of it's parents) is inside the modal
+    let target = event.target as HTMLElement | null;
+    while (target !== null && !hasClass(target, "mastodon-share-modal")) {
+      target = target.parentElement;
+    }
+    if (target === null) {
+      // The click is not inside the modal, we can close it
+      this.close();
+    }
+  }
+}
 
 const matomoSvgLogo = `
 <svg width="313" height="81" viewBox="0 0 313 81" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,5 +147,3 @@ const matomoSvgLogo = `
   </defs>
 </svg>
 `;
-
-export default MastodonShareModal;

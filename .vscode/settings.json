@@ -41,6 +41,6 @@
 	"scss.validate": false,
 	"stylelint.enable": true,
 	"stylelint.validate": ["css", "scss"],
-	"prettier.configPath": "prettier.config.mjs",
+	"prettier.configPath": "prettier.config.js",
 	"prettier.ignorePath": ".prettierignore"
 }
