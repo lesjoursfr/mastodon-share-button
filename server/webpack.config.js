@@ -1,8 +1,7 @@
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import MinimizerPlugin from "minimizer-webpack-plugin";
 import { resolve } from "path";
 import * as sass from "sass";
-import TerserPlugin from "terser-webpack-plugin";
 
 export default {
   mode: "development",
@@ -74,19 +73,24 @@ export default {
   ],
   optimization: {
     minimizer: [
-      new CssMinimizerPlugin({
-        minimizerOptions: [{ preset: "default" }],
-        minify: [CssMinimizerPlugin.cssnanoMinify],
-      }),
-      new TerserPlugin({
-        terserOptions: {
-          ecma: 6,
-          compress: true,
-          format: {
-            comments: false,
-          },
-        },
+      new MinimizerPlugin({
+        test: /\.(?:[cm]?js|css)(\?.*)?$/i,
         extractComments: false,
+        minify: [MinimizerPlugin.terserMinify, MinimizerPlugin.cssnanoMinify],
+        minimizerOptions: [
+          // Options for `MinimizerPlugin.terserMinify`
+          {
+            ecma: 6,
+            compress: true,
+            format: {
+              comments: false,
+            },
+          },
+          // Options for `MinimizerPlugin.cssnanoMinify`
+          {
+            preset: ["cssnano-preset-default", { discardComments: { removeAll: true } }],
+          },
+        ],
       }),
     ],
   },
