@@ -1,6 +1,6 @@
 {
 	"name": "@lesjoursfr/mastodon-share-button",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "Simple module to share content to Mastodon.",
 	"license": "MIT",
 	"repository": {
@@ -48,7 +48,7 @@
 		"button"
 	],
 	"dependencies": {
-		"@lesjoursfr/browser-tools": "^3.1.4"
+		"@lesjoursfr/browser-tools": "^3.1.5"
 	},
 	"devDependencies": {
 		"@babel/core": "8.0.1",
